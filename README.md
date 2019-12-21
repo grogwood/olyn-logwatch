@@ -1,6 +1,12 @@
 Olyn LogWatch Recipe
 
-##### Note
-Something in this cookbook causes a conflict with the Percona dpkg installer if it is run first.
-So far this has only been seen on UpCloud Debian 10 images.
-This cookbook must always be run after Percona until the issue is nailed down.
+##### Percona cookbook conflict
+This cookbook will install the `mailutils` package.
+That includes the following dependencies in Debian 10 Buster:
+
+`libmariadb3`  
+`mariadb-common`  
+`mysql-common`  
+
+All three will cause a conflict with the Olyn Percona cookbook.
+Olyn Percona is set to remove them, and they will be installed again on the second run of the logwatch recipe
